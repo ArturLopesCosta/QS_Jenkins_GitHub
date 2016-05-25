@@ -38,10 +38,10 @@ public class ProjetoTest {
         //driver.findElement(By.linkText("Web page profissional")).click();
         //Assert.assertTrue("erro no link",driver.getTitle().matches(""));
         //Assert.assertEquals("Wrong page title","ALC Computer - Hardware, Software, Assistência Técnica, Redes, Web Design e Cartões PVC | Página Inicial",driver.getTitle());
-        //driver.findElement(By.linkText("Moodle profissional")).click();
-        //Assert.assertEquals("Artur Costa",driver.getTitle());
-        driver.findElement(By.linkText("Formador")).click();
-        Assert.assertEquals("ISLA Santarém",driver.getTitle());
+        driver.findElement(By.linkText("Moodle profissional")).click();
+        Assert.assertEquals("Artur Costa",driver.getTitle());
+        //driver.findElement(By.linkText("Formador")).click();
+        //Assert.assertEquals("ISLA Santarém",driver.getTitle());
     }
 
     @After
