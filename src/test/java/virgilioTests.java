@@ -32,6 +32,7 @@ public class virgilioTests {
         //Assert.assertEquals("Wrong page title","ALC Computer - Hardware, Software, Assistência Técnica, Redes, Web Design e Cartões PVC | Página Inicial",driver.getTitle());
         driver.findElement(By.linkText("Profile Virgilio Reis")).click();
         Assert.assertEquals("Virgilio Reis",driver.getTitle());
+        driver.findElement(By.id("address")).getText();
         //driver.findElement(By.linkText("Formador")).click();
         //Assert.assertEquals("ISLA Santarém",driver.getTitle());
     }
