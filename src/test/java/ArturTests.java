@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-public class ProjetoTest {
+public class ArturTests {
     private WebDriver driver;
     private String baseUrl;
     private String searchTerm;
@@ -38,19 +38,21 @@ public class ProjetoTest {
         //driver.findElement(By.linkText("Web page profissional")).click();
         //Assert.assertTrue("erro no link",driver.getTitle().matches(""));
         //Assert.assertEquals("Wrong page title","ALC Computer - Hardware, Software, Assistência Técnica, Redes, Web Design e Cartões PVC | Página Inicial",driver.getTitle());
-        driver.get(baseUrl + "/");
-        driver.findElement(By.linkText("Profile Artur Costa")).click();
-        Assert.assertEquals("Artur Costa",driver.getTitle());
-        driver.get(baseUrl + "/");
-        driver.findElement(By.linkText("Profile Wilson Rodrigues")).click();
-        Assert.assertEquals("Wilson Rodrigues",driver.getTitle());
-        driver.get(baseUrl + "/");
-        driver.findElement(By.linkText("Profile Virgilio Reis")).click();
-        Assert.assertEquals("Virgilio Reis",driver.getTitle());
+        driver.get(baseUrl + "/arturcosta.html");
+        driver.findElement(By.linkText("Site ALC Computer")).click();
+        Assert.assertEquals("ALC Computer - Hardware, Software, Assistência Técnica, Redes, Web Design e Cartões PVC | Página Inicial",driver.getTitle());
 
+        driver.get(baseUrl + "/arturcosta.html");
+        driver.findElement(By.linkText("Site IEFP")).click();
+        Assert.assertEquals("Formação - IEFP, I.P.",driver.getTitle());
+
+        driver.get(baseUrl + "/arturcosta.html");
+        driver.findElement(By.linkText("Site ISLA Santarém")).click();
+        Assert.assertEquals("ISLA Santarém",driver.getTitle());
 
         //driver.findElement(By.linkText("Formador")).click();
         //Assert.assertEquals("ISLA Santarém",driver.getTitle());
+
     }
 
     @After
@@ -58,6 +60,5 @@ public class ProjetoTest {
         driver.quit();
 
     }
-
-
 }
+
