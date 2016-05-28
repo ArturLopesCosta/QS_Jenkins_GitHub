@@ -18,9 +18,10 @@ public class virgilioTests {
     @Before
     public void setUp() throws Exception {
         driver = new HtmlUnitDriver();
+        //driver = new FirefoxDriver();
         //http://www.arturcosta.com/qs/
-        baseUrl = "http://www.arturcosta.com/qs/"; //baseUrl for the online version
-        //baseUrl = "http://localhost:8080/team/"; //baseUrl for the local version
+        //baseUrl = "http://www.arturcosta.com/qs/"; //baseUrl for the online version
+        baseUrl = "http://localhost:8080/team/"; //baseUrl for the local version
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
     //
@@ -32,8 +33,11 @@ public class virgilioTests {
         //Assert.assertEquals("Wrong page title","ALC Computer - Hardware, Software, Assistência Técnica, Redes, Web Design e Cartões PVC | Página Inicial",driver.getTitle());
         driver.findElement(By.linkText("Profile Virgilio Reis")).click();
         Assert.assertEquals("Virgilio Reis",driver.getTitle());
-        //driver.findElement(By.linkText("Formador")).click();
-        //Assert.assertEquals("ISLA Santarém",driver.getTitle());
+        driver.findElement(By.id("address")).getText();
+        driver.findElement(By.id("education")).getText();
+
+        driver.findElement(By.linkText("My Facebook")).click();
+
     }
 
     @After
