@@ -50,6 +50,10 @@ public class ArturTests {
         driver.findElement(By.linkText("Site ISLA Santarém")).click();
         Assert.assertEquals("ISLA Santarém",driver.getTitle());
 
+        driver.get(baseUrl + "/arturcosta.html");
+        driver.findElement(By.linkText("Minhaventura")).click();
+        Assert.assertEquals("descer o rio Coura em kayak - MinhAventura",driver.getTitle());
+
         //driver.findElement(By.linkText("Formador")).click();
         //Assert.assertEquals("ISLA Santarém",driver.getTitle());
 
