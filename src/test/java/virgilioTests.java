@@ -25,8 +25,8 @@ public class virgilioTests {
 
         //driver = new FirefoxDriver();
         //http://www.arturcosta.com/qs/
-        baseUrl = "http://www.arturcosta.com/qs/"; //baseUrl for the online version
-        //baseUrl = "http://localhost:8080/team/"; //baseUrl for the local version
+        //baseUrl = "http://www.arturcosta.com/qs/"; //baseUrl for the online version
+        baseUrl = "http://localhost:8080/team/"; //baseUrl for the local version
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
     //
@@ -41,6 +41,15 @@ public class virgilioTests {
         driver.findElement(By.id("address")).getText();
         driver.findElement(By.id("education")).getText();
 
+
+
+        String data = driver.findElement(By.xpath("/html/body/div[3]/table/tbody/tr[5]/td[1]")).getText();
+
+        System.out.println("The data extracted is " + data);
+
+        String data2 = driver.findElement(By.xpath("/html/body/div[3]/table/tbody/tr[8]/td[1]")).getText();
+
+        System.out.println("The data extracted is " + data2);
 
         WebElement fotoProfile = driver.findElement(By.xpath("//img[contains(@id,'foto')]"));
 
