@@ -44,6 +44,13 @@ public class ArturTests {
         //Assert.assertTrue("erro no link",driver.getTitle().matches(""));
         //Assert.assertEquals("Wrong page title","ALC Computer - Hardware, Software, Assistência Técnica, Redes, Web Design e Cartões PVC | Página Inicial",driver.getTitle());
         driver.get(baseUrl + "/arturcosta.html");
+        WebElement fotoArtur = driver.findElement(By.xpath("//img[@alt='Foto Artur']"));
+         Boolean fotoCarregada = (Boolean) ((JavascriptExecutor)driver).executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", fotoArtur);
+
+        Assert.assertEquals(true, fotoCarregada);
+
+       // WebElement fotoArtur = driver.findElement(By.xpath("//img[contains(@id,'fotoArtur')]"));
+        //  Assert.assertEquals(true, fotoArtur.isEnabled());
 
         driver.findElement(By.linkText("Site ALC Computer")).click();
         Assert.assertEquals("ALC Computer - Hardware, Software, Assistência Técnica, Redes, Web Design e Cartões PVC | Página Inicial",driver.getTitle());
