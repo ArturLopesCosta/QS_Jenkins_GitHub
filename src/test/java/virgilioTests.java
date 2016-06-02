@@ -3,9 +3,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,10 +21,10 @@ public class virgilioTests {
     @Before
     public void setUp() throws Exception {
 
-        driver = new HtmlUnitDriver();
+        //driver = new HtmlUnitDriver();
+        //driver.setJavascriptEnabled(true);
 
-
-        //driver = new FirefoxDriver();
+        driver = new FirefoxDriver();
         //http://www.arturcosta.com/qs/
         baseUrl = "http://www.arturcosta.com/qs/"; //baseUrl for the online version
         //baseUrl = "http://localhost:8080/team/"; //baseUrl for the local version
@@ -41,6 +42,8 @@ public class virgilioTests {
         driver.findElement(By.id("address")).getText();
         driver.findElement(By.id("education")).getText();
 
+        driver.findElement(By.id("birthdate")).getText();
+
 
 
         String data = driver.findElement(By.xpath("/html/body/div[3]/table/tbody/tr[5]/td[1]")).getText();
@@ -53,7 +56,10 @@ public class virgilioTests {
 
         WebElement fotoProfile = driver.findElement(By.xpath("//img[contains(@id,'foto')]"));
 
-        Assert.assertEquals(true, fotoProfile.isEnabled());
+        Boolean imageLoaded2 = (Boolean) ((JavascriptExecutor)driver).executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", fotoProfile);
+
+
+        Assert.assertEquals(true, imageLoaded2);
 
         driver.findElement(By.linkText("My Facebook")).click();
 
