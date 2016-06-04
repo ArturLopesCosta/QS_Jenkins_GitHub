@@ -32,8 +32,26 @@ public class virgilioTests {
         //baseUrl = "http://localhost:8080/team/"; //baseUrl for the local version
         personalURL = baseUrl+personalPage;
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
     }
-    //
+
+    @Test
+    public void testSpeedLoad() throws Exception{ //Test the time of page load in milliseconds
+        //saves the current time in milliseconds
+        long initialTime = System.currentTimeMillis();
+
+        //open the personal web page
+
+        driver.get(personalURL);
+        //saves the time in milliseconds after the driver open the personal web page
+        long finalTime = System.currentTimeMillis();
+
+        //calculate the final time
+        long totalTime = finalTime - initialTime;
+
+        System.out.println("The page takes "+ totalTime + " milliseconds");
+    }
+
     @Test
     public void testJavaTeste() throws Exception {
         driver.get(baseUrl);
@@ -42,7 +60,7 @@ public class virgilioTests {
         //Assert.assertEquals("Wrong page title","ALC Computer - Hardware, Software, Assistência Técnica, Redes, Web Design e Cartões PVC | Página Inicial",driver.getTitle());
         driver.findElement(By.linkText("Profile Virgilio Reis")).click();
         Assert.assertEquals("Virgilio Reis",driver.getTitle());
-        driver.findElement(By.id("address")).getText();
+
         driver.findElement(By.id("education")).getText();
 
         driver.findElement(By.id("birthdate")).getText();
@@ -69,7 +87,19 @@ public class virgilioTests {
     }
 
     @Test
-    public void testFacebookLink() throws Exception {
+    public void textAddress() throws Exception { // Test the personal web page section address
+        driver.get(personalURL);
+        Assert.assertEquals("http://localhost:8080/team/VirgilioReis.html", driver.getCurrentUrl());
+        Assert.assertEquals("Virgilio Reis", driver.getTitle());
+
+        WebElement addressSerctor = driver.findElement(By.id("address"));
+        Assert.assertEquals(addressSerctor.getText(), "Address");
+
+
+    }
+
+    @Test
+    public void testFacebookLink() throws Exception { // Test the facebook link
 
 
 
@@ -86,6 +116,8 @@ public class virgilioTests {
         //Check if the url bellong to the Virgilio Reis facebook web page
         //*[@id="fb-timeline-cover-name"]
         //Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"fb-timeline-cover-name\"]")).getText(), "Virgilio Reis");
+
+
 
     }
 
