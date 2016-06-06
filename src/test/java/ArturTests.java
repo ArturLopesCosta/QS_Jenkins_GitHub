@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
+import static java.awt.SystemColor.text;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -31,7 +32,7 @@ public class ArturTests {
     public void setUp() throws Exception {
         driver = new FirefoxDriver();
         //driver = new HtmlUnitDriver();
-        http://www.arturcosta.com/qs/
+        //http://www.arturcosta.com/qs/
         baseUrl = "http://www.arturcosta.com/qs/";
         //baseUrl = "http://localhost:8080/team/";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -45,6 +46,7 @@ public class ArturTests {
         Assert.assertEquals("Artur Costa",driver.getTitle());
         driver.close();
     }
+
     @Test
     public void testLinks() throws Exception {
 
@@ -100,7 +102,24 @@ public class ArturTests {
         driver.close();
 
     }
-
+    @Test
+    public void testCSS() throws Exception {
+        //http://testautomationarchives.blogspot.pt/2013/12/selenium-webdriver-get-background-color.html
+        String text;
+        driver.get(baseUrl + "/arturcosta.html");
+        WebElement WebElement1 = driver.findElement(By.xpath("//body[@id='main']"));
+        text =WebElement1.getCssValue("background-color").toString();
+        //Split css value of rgb
+        String[] numbers = text.replace("rgba(", "").replace(")", "").split(",");
+        int number1=Integer.parseInt(numbers[0]);
+        numbers[1] = numbers[1].trim();
+        int number2=Integer.parseInt(numbers[1]);
+        numbers[2] = numbers[2].trim();
+        int number3=Integer.parseInt(numbers[2]);
+        String hex = String.format("#%02x%02x%02x", number1,number2,number3);
+        Assert.assertTrue("Cor de Fundo incorreta",hex.equals("#d0e4fe"));
+        driver.close();
+    }
 
     @After
     public void tearDown() throws Exception {
