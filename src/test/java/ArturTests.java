@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static java.awt.SystemColor.text;
@@ -120,7 +121,34 @@ public class ArturTests {
         Assert.assertTrue("Cor de Fundo incorreta",hex.equals("#d0e4fe"));
         driver.close();
     }
+    @Test
+    //verificar se há valores nulos na tabela externa
+    public void testInscricoes() throws Exception {
+        //http://www.softwaretestinghelp.com/selenium-tutorial-18/
+        String text;
+        driver.get("http://www.descidadocoura.pt/lista-inscricoes-descida.php");
+       // WebElement htmltable=driver.findElement(By.xpath("//*[@id='main']/table[1]/tbody"));
+        WebElement htmltable=driver.findElement(By.tagName("tbody"));
+        int nulos=0;
+        List<WebElement> rows=htmltable.findElements(By.tagName("tr"));
+        for(int rnum=0;rnum<rows.size();rnum++)
+        {
+            List<WebElement> columns=rows.get(rnum).findElements(By.tagName("td"));
+            //System.out.println("Number of columns:"+columns.size());
+            for(int cnum=0;cnum<columns.size();cnum++)
 
+            {
+
+               if (columns.get(cnum).getText().equals(""))
+                nulos++;
+
+            }
+
+        }
+        System.out.println(nulos);
+        Assert.assertTrue("valores nulos na tabela",nulos==0);
+        driver.close();
+    }
     @After
     public void tearDown() throws Exception {
         driver.quit();
