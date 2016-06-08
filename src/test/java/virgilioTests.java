@@ -91,7 +91,7 @@ public class virgilioTests {
     @Test
     public void textAddress() throws Exception { // Test the personal web page section address
         driver.get(personalURL);
-        Assert.assertEquals("http://localhost:8080/team/VirgilioReis.html", driver.getCurrentUrl());
+        //Assert.assertEquals("http://localhost:8080/team/VirgilioReis.html", driver.getCurrentUrl());
         Assert.assertEquals("Virgilio Reis", driver.getTitle());
 
         WebElement addressSerctor = driver.findElement(By.id("address"));
@@ -106,7 +106,7 @@ public class virgilioTests {
 
 
         driver.get(personalURL);
-        Assert.assertEquals("http://localhost:8080/team/VirgilioReis.html", driver.getCurrentUrl());
+        //Assert.assertEquals("http://localhost:8080/team/VirgilioReis.html", driver.getCurrentUrl());
         Assert.assertEquals("Virgilio Reis", driver.getTitle());
 
         //Find and click the url facebook on the personal webpage
@@ -135,9 +135,9 @@ public class virgilioTests {
 
                 countNotEmpty++;
 
-            System.out.println("List of tr " + e.getText());
+           // System.out.println("List of tr " + e.getText());
         }
-        System.out.println("Number of lines" + countNotEmpty);
+       // System.out.println("Number of lines" + countNotEmpty);
 
         Assert.assertEquals(4, countNotEmpty);
     }
@@ -156,14 +156,33 @@ public class virgilioTests {
 
             countNotEmpty++;
 
-            System.out.println("List of tr " + e.getText());
+            //System.out.println("List of tr " + e.getText());
         }
-        System.out.println("Number of lines: " + countNotEmpty);
+        //System.out.println("Number of lines: " + countNotEmpty);
 
         Assert.assertEquals(10, countNotEmpty);
     }
 
+    @Test
+    public void testTableBirthdate() throws Exception
+    {
+        driver.get(personalURL);
 
+        WebElement tableAddress = driver.findElement(By.id("tableBirthdate"));
+        List<WebElement> listTR = tableAddress.findElements(By.tagName("tr"));
+
+        int countNotEmpty = 0;
+
+        for (WebElement e: listTR ) {
+
+            countNotEmpty++;
+
+            System.out.println("List of tr " + e.getText());
+        }
+        System.out.println("Number of lines" + countNotEmpty);
+
+        Assert.assertEquals(2, countNotEmpty);
+    }
 
     @After
     public void tearDown() throws Exception {
