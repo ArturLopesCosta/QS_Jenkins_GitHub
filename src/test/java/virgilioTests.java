@@ -61,9 +61,10 @@ public class virgilioTests {
         driver.findElement(By.linkText("Profile Virgilio Reis")).click();
         Assert.assertEquals("Virgilio Reis",driver.getTitle());
 
-        driver.findElement(By.id("education")).getText();
+        String textEducation = driver.findElement(By.id("education")).getText();
+        Assert.assertEquals(textEducation, "Education");
 
-        driver.findElement(By.id("birthdate")).getText();
+        String textBirgthdate = driver.findElement(By.id("birthdate")).getText();
 
 
 
