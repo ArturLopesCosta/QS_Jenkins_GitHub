@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class virgilioTests {
@@ -64,8 +65,8 @@ public class virgilioTests {
         String textEducation = driver.findElement(By.id("education")).getText();
         Assert.assertEquals(textEducation, "Education");
 
-        String textBirgthdate = driver.findElement(By.id("birthdate")).getText();
-
+        String textBirthdate = driver.findElement(By.id("birthdate")).getText();
+        Assert.assertEquals(textBirthdate, "Birthdate");
 
 
         String data = driver.findElement(By.xpath("/html/body/div[3]/table/tbody/tr[5]/td[1]")).getText();
@@ -118,9 +119,51 @@ public class virgilioTests {
         //*[@id="fb-timeline-cover-name"]
         //Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"fb-timeline-cover-name\"]")).getText(), "Virgilio Reis");
 
-
-
     }
+
+    @Test
+    public void testTablesAddress() throws Exception
+    {
+        driver.get(personalURL);
+
+        WebElement tableAddress = driver.findElement(By.id("tableAddress"));
+        List<WebElement> listTR = tableAddress.findElements(By.tagName("tr"));
+
+        int countNotEmpty = 0;
+
+        for (WebElement e: listTR ) {
+
+                countNotEmpty++;
+
+            System.out.println("List of tr " + e.getText());
+        }
+        System.out.println("Number of lines" + countNotEmpty);
+
+        Assert.assertEquals(4, countNotEmpty);
+    }
+
+    @Test
+    public void testTablesEducation() throws Exception
+    {
+        driver.get(personalURL);
+
+        WebElement tableAddress = driver.findElement(By.id("tableEducation"));
+        List<WebElement> listTR = tableAddress.findElements(By.tagName("tr"));
+
+        int countNotEmpty = 0;
+
+        for (WebElement e: listTR ) {
+
+            countNotEmpty++;
+
+            System.out.println("List of tr " + e.getText());
+        }
+        System.out.println("Number of lines: " + countNotEmpty);
+
+        Assert.assertEquals(10, countNotEmpty);
+    }
+
+
 
     @After
     public void tearDown() throws Exception {
