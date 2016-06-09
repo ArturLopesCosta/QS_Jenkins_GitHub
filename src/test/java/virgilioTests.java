@@ -29,8 +29,8 @@ public class virgilioTests {
 
         driver = new FirefoxDriver();
         //http://www.arturcosta.com/qs/
-        //baseUrl = "http://www.arturcosta.com/qs/"; //baseUrl for the online version
-        baseUrl = "http://localhost:8080/team/"; //baseUrl for the local version
+        baseUrl = "http://www.arturcosta.com/qs/"; //baseUrl for the online version
+        //baseUrl = "http://localhost:8080/team/"; //baseUrl for the local version
         personalURL = baseUrl+personalPage;
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
